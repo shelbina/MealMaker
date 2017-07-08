@@ -2,3 +2,11 @@ body {
 	background:url(foodbkg.jpg) no-repeat center center fixed;
 	background-size: cover;
 }
+.jumbotron {
+	margin: auto;
+	width: 80%;
+}
+.input-group {
+	margin: auto;
+	width: 82%
+}
