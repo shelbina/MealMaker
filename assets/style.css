@@ -10,3 +10,11 @@ body {
 	margin: auto;
 	width: 82%
 }
+
+table {
+	background-color:white;
+}
+
+th {
+	background-color:f8f5f0;
+}
