@@ -1,12 +1,15 @@
-// Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyC3VxUOsWXYcjoYzefgW9bW1WJ8pJH6BQ4",
-    authDomain: "mealmaker-a5669.firebaseapp.com",
-    databaseURL: "https://mealmaker-a5669.firebaseio.com",
-    projectId: "mealmaker-a5669",
-    storageBucket: "",
-    messagingSenderId: "158039007710"
+ var config = {
+    apiKey: "AIzaSyBKpIFAQruvPekpkeqncOcIPpnnK78U6Zg",
+    authDomain: "mealmaker-3f984.firebaseapp.com",
+    databaseURL: "https://mealmaker-3f984.firebaseio.com",
+    projectId: "mealmaker-3f984",
+    storageBucket: "mealmaker-3f984.appspot.com",
+    messagingSenderId: "776198822347"
   };
+
+  firebase.initializeApp(config);
+  
+  var database = firebase.database();
 
  var webformatURL;
 
@@ -55,16 +58,7 @@ function createFoodImage(){
 
 
 
-// // // Initialize Firebase
-// //   var config = {
-// //     apiKey: "AIzaSyBKpIFAQruvPekpkeqncOcIPpnnK78U6Zg",
-// //     authDomain: "mealmaker-3f984.firebaseapp.com",
-// //     databaseURL: "https://mealmaker-3f984.firebaseio.com",
-// //     projectId: "mealmaker-3f984",
-// //     storageBucket: "mealmaker-3f984.appspot.com",
-// //     messagingSenderId: "776198822347"
-// //   };
-// //   firebase.initializeApp(config);
 
-// // console.log("test");
+
+console.log("test");
 
