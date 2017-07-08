@@ -18,3 +18,8 @@ table {
 th {
 	background-color:f8f5f0;
 }
+
+.well {
+	margin: auto;
+	width: 80%;
+}
