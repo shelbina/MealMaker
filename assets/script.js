@@ -11,20 +11,13 @@
 
  var database = firebase.database();
 
- $(document).ready(function () {
+ $(document).ready(function() {
    console.log("ready");
  });
 
- $("#food-input-button").click(function (e) {
+ $("#food-input-button").click(function(e) {
    e.preventDefault();
    var foodInput = $("#food-input").val().trim();
-// Food Name
-// Quantity
-// Total Fat
-// Sodium
-// Carbs
-// Protein
-   console.log(foodInput);
    var applicationIDNutrition = "570420e6";
    var apiKeyNutrition = "3f9b7cc73ed56deaca89dd781453c5e7";
    var queryURLNutrition = "https://api.nutritionix.com/v1_1/search/" + foodInput +
@@ -40,17 +33,21 @@
    $.ajax({
      url: (queryURLNutrition),
      method: "GET"
-   }).done(function (nutritionResponse) {
+   }).done(function(nutritionResponse) {
+     x = nutritionResponse.hits[0].fields;
      console.log(nutritionResponse);
+     addFoodToTable();
    });
 
    $.ajax({
 
      url: (queryURLImage),
      method: "GET"
-   }).done(function (imageResponse) {
-     webformatURL = (imageResponse.hits[0].webformatURL);
+   }).done(function(imageResponse) {
+     y = imageResponse.hits[0];
+     webformatURL = (y.webformatURL);
      console.log("Click this " + webformatURL);
+     console.log(imageResponse);
      createFoodImage();
    });
 
@@ -63,3 +60,25 @@
    // newDiv.append(foodImage);
    $(".panel-body").append(foodImage);
  }
+
+ function addFoodToTable(){
+   var newFood = {
+    foodName: x.item_name,
+    servSize: x.nf_serving_size_qty,
+    calories: x.nf_calories,
+    fat: x.nf_total_fat,
+  };
+  database.ref().push(newFood);
+  console.log(newFood.foodName);
+  console.log(newFood.servSize);
+  console.log(newFood.calories);
+  console.log(newFood.fat);
+
+ }
+
+//  //Food Names
+// Quantity
+// Total Fat 
+// Sodium 
+// Carbs
+// Protein
