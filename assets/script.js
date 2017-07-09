@@ -18,6 +18,12 @@
  $("#food-input-button").click(function (e) {
    e.preventDefault();
    var foodInput = $("#food-input").val().trim();
+// Food Name
+// Quantity
+// Total Fat
+// Sodium
+// Carbs
+// Protein
    console.log(foodInput);
    var applicationIDNutrition = "570420e6";
    var apiKeyNutrition = "3f9b7cc73ed56deaca89dd781453c5e7";
@@ -27,6 +33,7 @@
 
    var apiKeyImage = "key=5847309-0a6ea96477b972ed6e131f630&q=";
    var queryURLImage = "https://pixabay.com/api/?" + apiKeyImage + foodInput + "&image_type=photo";
+
 
 
 
@@ -56,18 +63,3 @@
    // newDiv.append(foodImage);
    $(".panel-body").append(foodImage);
  }
-
- console.log("test");
-
- // var animate = response.data[i].images.downsized.url;
- //     var newDiv =$("<div>");
- //     newDiv.addClass("newDiv");
- //     var rating = $("<p>").text("Rating: " + response.data[i].rating);
- //     newDiv.append(rating);
- //     var image = $("<img height=200px width=200px>");
- //    image.attr("data-state", "still");
- //    image.attr("data-still", still);
- //    image.attr("data-animate", animate);
- //    image.attr("src", still);
- //     newDiv.append(image);
- //     $("#gifImages").prepend(newDiv);
