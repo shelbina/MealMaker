@@ -43,22 +43,31 @@ $.ajax ({
     url: (queryURLImage),
     method: "GET"
 }).done(function(imageResponse){
-  webformatURL = (imageResponse.hits[1].webformatURL);
+  webformatURL = (imageResponse.hits[0].webformatURL);
+  console.log("Click this " + webformatURL);
 });
 
 });
 
 function createFoodImage(){
-  var newDiv = $("<div>");
-  newDiv.addClass = $("food-image");
-  var foodImage = $("<img src=" + webformatURL);
-  newDiv.append(foodImage);
-  $(".panel-body").append(newDiv);
+ // var newDiv = $("<div>");
+ // newDiv.addClass = $("food-image");
+  var foodImage = $("<img height=200px width=200px src="+ webformatURL +">");
+  // newDiv.append(foodImage);
+  $(".panel-body").append(foodImage);
 };
-
-
-
-
 
 console.log("test");
 
+// var animate = response.data[i].images.downsized.url;
+//     var newDiv =$("<div>");
+//     newDiv.addClass("newDiv");
+//     var rating = $("<p>").text("Rating: " + response.data[i].rating);
+//     newDiv.append(rating);
+//     var image = $("<img height=200px width=200px>");
+//    image.attr("data-state", "still");
+//    image.attr("data-still", still);
+//    image.attr("data-animate", animate);
+//    image.attr("src", still);
+//     newDiv.append(image);
+//     $("#gifImages").prepend(newDiv);
