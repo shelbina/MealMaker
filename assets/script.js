@@ -32,28 +32,20 @@ var fat;
    var apiKeyImage = "key=5847309-0a6ea96477b972ed6e131f630&q=";
    var queryURLImage = "https://pixabay.com/api/?" + apiKeyImage + foodInput + "&image_type=photo";
    
-
-
-
-
    $.ajax({
      url: (queryURLNutrition),
      method: "GET"
    }).done(function(nutritionResponse) {
      x = nutritionResponse.hits[0].fields;
-     console.log(nutritionResponse);
      addFoodToTable();
    });
 
    $.ajax({
-
      url: (queryURLImage),
      method: "GET"
    }).done(function(imageResponse) {
      y = imageResponse.hits[0];
      webformatURL = (y.webformatURL);
-     console.log("Click this " + webformatURL);
-     console.log(imageResponse);
      createFoodImage();
    });
 
@@ -76,10 +68,6 @@ var fat;
     fat: x.nf_total_fat,
   };
   database.ref().push(newFood);
-  console.log(newFood.foodName);
-  console.log(newFood.servSize);
-  console.log(newFood.calories);
-  console.log(newFood.fat);
  }
 
  database.ref().on("child_added", function(childSnapshot, prevChildKey){
@@ -87,14 +75,14 @@ var fat;
   var servSize = childSnapshot.val().servSize;
   var calories = childSnapshot.val().calories;
   var fat = childSnapshot.val().fat;
-    console.log(foodName);
-  console.log(servSize);
-  console.log(calories);
-  console.log(fat);
 
-  
   $("#table-body").append("<tr><td>" + foodName+ "</td><td>" + servSize + "</td><td>" +
     calories + "</td><td>" + fat + "</td></tr>");
  });
 
+$("#calc-food").click(function (e) { 
+  e.preventDefault();
+  console.log("Meal Total Clicked!")
+});
 //button click ref.remove from line 19 in document.ready function
+
