@@ -18,6 +18,7 @@
  $("#food-input-button").click(function(e) {
    e.preventDefault();
    var foodInput = $("#food-input").val().trim();
+   clearTextBoxes();
    var applicationIDNutrition = "570420e6";
    var apiKeyNutrition = "3f9b7cc73ed56deaca89dd781453c5e7";
    var queryURLNutrition = "https://api.nutritionix.com/v1_1/search/" + foodInput +
@@ -26,6 +27,7 @@
 
    var apiKeyImage = "key=5847309-0a6ea96477b972ed6e131f630&q=";
    var queryURLImage = "https://pixabay.com/api/?" + apiKeyImage + foodInput + "&image_type=photo";
+   
 
 
 
@@ -53,6 +55,10 @@
 
  });
 
+ function clearTextBoxes() {
+  trainName = $("#food-input").val("");
+}
+
  function createFoodImage() {
    // var newDiv = $("<div>");
    // newDiv.addClass = $("food-image");
@@ -73,12 +79,21 @@
   console.log(newFood.servSize);
   console.log(newFood.calories);
   console.log(newFood.fat);
+  
 
  }
 
-//  //Food Names
-// Quantity
-// Total Fat 
-// Sodium 
-// Carbs
-// Protein
+ database.ref().on("child_added", function(childSnapshot, prevChildKey){
+  var foodName = childSnapshot.val().foodName;
+  var servSize = childSnapshot.val().servSize;
+  var calories = childSnapshot.val().calories;
+  var fat = childSnapshot.val().fat;
+    console.log(foodName);
+  console.log(servSize);
+  console.log(calories);
+  console.log(fat);
+
+  
+  $("#table-body").append("<tr><td>" + foodName+ "</td><td>" + servSize + "</td><td>" +
+    calories + "</td><td>" + fat + "</td></tr>");
+ });
