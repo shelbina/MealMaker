@@ -10,9 +10,13 @@
  firebase.initializeApp(config);
 
  var database = firebase.database();
-
+var foodName;
+var servSize;
+var calories;
+var fat;
  $(document).ready(function() {
    console.log("ready");
+   database.ref().remove();
  });
 
  $("#food-input-button").click(function(e) {
@@ -60,10 +64,7 @@
 }
 
  function createFoodImage() {
-   // var newDiv = $("<div>");
-   // newDiv.addClass = $("food-image");
    var foodImage = $("<img height=200px width=200px src=" + webformatURL + ">");
-   // newDiv.append(foodImage);
    $(".panel-body").append(foodImage);
  }
 
@@ -79,8 +80,6 @@
   console.log(newFood.servSize);
   console.log(newFood.calories);
   console.log(newFood.fat);
-  
-
  }
 
  database.ref().on("child_added", function(childSnapshot, prevChildKey){
@@ -97,3 +96,5 @@
   $("#table-body").append("<tr><td>" + foodName+ "</td><td>" + servSize + "</td><td>" +
     calories + "</td><td>" + fat + "</td></tr>");
  });
+
+//button click ref.remove from line 19 in document.ready function
