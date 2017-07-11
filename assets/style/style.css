@@ -4,11 +4,9 @@ body {
 }
 .jumbotron {
 	margin: auto;
-	width: 80%;
 }
 .input-group {
 	margin: auto;
-	width: 82%
 }
 table {
 	background-color:white;
@@ -18,10 +16,12 @@ th {
 }
 .well {
 	margin: auto;
-	width: 80%;
 }
-html {
+.opaque {
   min-height: 100%;
   position: relative;
   opacity: 0.8;
+}
+.solid {
+	opacity: 1;
 }
