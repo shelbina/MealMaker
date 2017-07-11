@@ -13,37 +13,17 @@
 var foodName;
 var servSize;
 var calories;
-var fat;
+var fat
+var totalCalories = [];
+var i = 0;
+ 
+
  $(document).ready(function() {
    console.log("ready");
-    $("#myCarousel").carousel({interval: 1000});
-    
-    // Enable Carousel Indicators
-    $(".item1").click(function(){
-        $("#myCarousel").carousel(0);
-    });
-    $(".item2").click(function(){
-        $("#myCarousel").carousel(1);
-    });
-    $(".item3").click(function(){
-        $("#myCarousel").carousel(2);
-    });
-    $(".item4").click(function(){
-        $("#myCarousel").carousel(3);
-    });
-    $(".item5").click(function(){
-        $("#myCarousel").carousel(4);
-    })
-    
-    // Enable Carousel Controls
-    $(".left").click(function(){
-        $("#myCarousel").carousel("prev");
-    });
-    $(".right").click(function(){
-        $("#myCarousel").carousel("next");
-    });
    database.ref().remove();
  });
+
+
 
  $("#food-input-button").click(function(e) {
    e.preventDefault();
@@ -63,6 +43,10 @@ var fat;
      method: "GET"
    }).done(function(nutritionResponse) {
      x = nutritionResponse.hits[0].fields;
+
+     calories = x.nf_calories;
+   
+ 
      addFoodToTable();
    });
 
@@ -86,6 +70,9 @@ var fat;
    $(".panel-body").append(foodImage);
  }
 
+
+
+
  function addFoodToTable(){
    var newFood = {
     foodName: x.item_name,
@@ -94,15 +81,19 @@ var fat;
     fat: x.nf_total_fat,
   };
 
+
   console.log(newFood);
   database.ref().push(newFood);
  }
+
+
 
  database.ref().on("child_added", function(childSnapshot, prevChildKey){
   var foodName = childSnapshot.val().foodName;
   var servSize = childSnapshot.val().servSize;
   var calories = childSnapshot.val().calories;
   var fat = childSnapshot.val().fat;
+
   $("#table-body").append("<tr><td>" + foodName+ "</td><td>" + servSize + "</td><td>" +
     calories + "</td><td>" + fat + "</td></tr>");
    totalCalories.push(calories);
@@ -133,3 +124,5 @@ $(".totals").html(totalHtml);
 //button click ref.remove from line 19 in document.ready function
 
 
+
+ 
