@@ -3,6 +3,8 @@
    <head>
       <title>Meal Maker</title>
       <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
       <title>Meal Maker</title>
       <link rel="stylesheet" href="assets/style/reset.css">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -38,39 +40,40 @@
       </div>
       <!-- /.row -->
       <div class="row">
-      <div class="col-lg-10">
+      <div class="col-lg-9">
          <table class="table table-hover">
             <thead clas="success">
                <th>Food Name</th>
                <th>Serving Size</th>
                <th>Calories</th>
-               <th>Fat</th>
+               <th>Total Fat (grams)</th>
             </thead>
-            <tbody>
+            <tbody id="table-body">
             <tr id="food-table" class="active">
-               <td>Test Water</td>
-               <td>Test Sz</td>
-               <td>Test Cal</td>
-               <td>Test Fat</td>
+              <td>Test Water</td>
+              <td>Test Sz</td>
+              <td>Test Cal</td>
+              <td>Test Fat</td>
+            </tr>
             </tbody>
          </table>
       </div>
-      <div class="col-lg-2">
+      <div class="col-lg-3">
          <div class="panel panel-default">
          <div class="panel-heading">Meals today include..</div>
          <div class="panel-body" id="food-pic">
          <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
         <ol class="carousel-indicators">
-          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-          <li data-target="#myCarousel" data-slide-to="1"></li>
-          <li data-target="#myCarousel" data-slide-to="2"></li>
-          <li data-target="#myCarousel" data-slide-to="3"></li>
-          <li data-target="#myCarousel" data-slide-to="4"></li>
+          <li data-target="#myCarousel" data-slide-to="0" class="item1 active"></li>
+          <li data-target="#myCarousel" data-slide-to="1" class="item2"></li>
+          <li data-target="#myCarousel" data-slide-to="2" class="item3"></li>
+          <li data-target="#myCarousel" data-slide-to="3" class="item4"></li>
+          <li data-target="#myCarousel" data-slide-to="4" class="item5"></li>
         </ol>
          <!--Wrapper for slides-->
-         <div class="carousel-inner">
-            <div class="item active">
+         <div class="carousel-inner" height=200px width=200px>
+            <div class="item active" >
                <img src="assets/images/tuna.jpg" class="img-responsive" alt="food">
             </div>
             <div class="item">
@@ -85,11 +88,11 @@
          </div><!--/.carousel-inner-->
          <!-- Left and right controls -->
          <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-           <span class="glyphicon glyphicon-chevron-left"></span>
+           <span class="glyphicon glyphicon-minus"></span>
            <span class="sr-only">Previous</span>
          </a>
          <a class="right carousel-control" href="#myCarousel" data-slide="next">
-           <span class="glyphicon glyphicon-chevron-right"></span>
+           <span class="glyphicon glyphicon-plus"></span>
            <span class="sr-only">Next</span>
          </a>
          </div><!--/.carousel-slide-->
@@ -150,6 +153,9 @@
       <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
       <script src=“https://www.gstatic.com/firebasejs/4.1.3/firebase.js“></script>
       <script src="https://code.jquery.com/jquery.js"></script>
-      <script type="text/javascript" src="javascript/app.js"></script>
+      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+      <script type="text/javascript" src="assets/C-logic.js"></script>
    </body>
 </html>
