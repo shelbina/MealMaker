@@ -1,5 +1,5 @@
 body {
-	background:url(foodbkg.jpg) no-repeat center center fixed;
+	background:url(../images/foodbkg.jpg) no-repeat center center fixed;
 	background-size: cover;
 }
 .jumbotron {
@@ -10,11 +10,18 @@ body {
 	margin: auto;
 	width: 82%
 }
-
 table {
 	background-color:white;
 }
-
 th {
 	background-color:f8f5f0;
+}
+.well {
+	margin: auto;
+	width: 80%;
+}
+html {
+  min-height: 100%;
+  position: relative;
+  opacity: 0.8;
 }
