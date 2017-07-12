@@ -4,6 +4,7 @@ body {
 }
 .jumbotron {
 	margin: auto;
+	 font-family: 'Rock Salt', cursive;
 }
 .input-group {
 	margin: auto;
@@ -24,4 +25,14 @@ th {
 }
 .solid {
 	opacity: 1;
+}
+footer {
+	opacity: 0.8;
+	padding:auto;
+}
+.item {
+	height: 200px;
+}
+.input-food{
+	margin-bottom: 20px;
 }
