@@ -10,20 +10,64 @@
  firebase.initializeApp(config);
 
  var database = firebase.database();
+
+//vars for MealMaker Page
 var foodName;
 var servSize;
 var calories;
-var fat
+var fat;
 var totalCalories = [];
 var i = 0;
  
+ //vars for login page
+var txtEmail = $("#txtEmail");
+var txtPassword = $("#txtPassword");
+var btnLogin = $("#btnLogin");
+var btnSignUp = $("#btnSignUp");
+var btnLogout = $("#btnLogout");
+
+$(btnLogin).click(function (e) { 
+  var email = txtEmail.val().trim();
+  var pass = txtPassword.val().trim();
+  var auth = firebase.auth();
+  var promise = auth.signInWithEmailAndPassword(email, pass);
+  promise.catch(e => console.log(e.message));
+  
+});
+$(btnSignUp).click(function (e) { 
+  var email = txtEmail.val().trim();
+  var pass = txtPassword.val().trim();
+  var auth = firebase.auth();
+  var promise = auth.createUserWithEmailAndPassword(email, pass);
+  promise.catch(e => console.log(e.message));
+  
+});
+
+firebase.auth().onAuthStateChanged(firebaseUser => {
+  if(firebaseUser){
+    console.log(firebaseUser);
+    console.log("Logged in A-Ok.")
+    $("#btnLogout").removeClass("hide");
+  } else {
+    console.log("not logged in");
+    $("#btnLogout").addClass("hide");
+  }
+});
+
+$("#btnLogout").click(function (e) { 
+  firebase.auth().signOut();
+  
+});
+
 
  $(document).ready(function() {
    console.log("ready");
    database.ref().remove();
  });
 
-
+// auth.signInWithEmailAndPassword(email, pass);
+// auth.createUserWithEmailAndPassword(email, pass);
+// auth.onAuthStateChanged(firebaseUser, { });
 
  $("#food-input-button").click(function(e) {
    e.preventDefault();
@@ -62,7 +106,7 @@ var i = 0;
  });
 
  function clearTextBoxes() {
-  trainName = $("#food-input").val("");
+  foodName = $("#food-input").val("");
 }
 
  function createFoodImage() {
@@ -119,7 +163,7 @@ $("#sr-only").html(complete);
 
 totalHtml = "<p class='text center total-p'> Total calories:<span class= 'cal'>" + total + "</span></p>";
 $(".totals").html(totalHtml);
-  console.log("Meal Total Clicked!")
+  console.log("Meal Total Clicked!");
 });
 //button click ref.remove from line 19 in document.ready function
 
