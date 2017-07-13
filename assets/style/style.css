@@ -43,3 +43,9 @@ h3 {
 .green {
 	background-color:#93c54b;
 }
+
+.btnBorder {
+	border-width: 2px;
+	border-style: solid;
+	border-color:white;
+}
