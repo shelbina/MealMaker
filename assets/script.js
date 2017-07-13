@@ -1,4 +1,4 @@
- var config = {
+var config = {
    apiKey: "AIzaSyBKpIFAQruvPekpkeqncOcIPpnnK78U6Zg",
    authDomain: "mealmaker-3f984.firebaseapp.com",
    databaseURL: "https://mealmaker-3f984.firebaseio.com",
@@ -15,9 +15,11 @@
 var foodName;
 var servSize;
 var calories;
+var totalFat = [];
 var fat;
 var totalCalories = [];
 var i = 0;
+var total = 0;
  
  //vars for login page
 var txtEmail = $("#txtEmail");
@@ -100,9 +102,13 @@ function clickAddFood(){
      x = nutritionResponse.hits[0].fields;
 
      calories = x.nf_calories;
+      totalCalories.push(calories);
+   fat = x.nf_total_fat;
+   totalFat.push(fat);
    
  
      addFoodToTable();
+     bar();
    });
 
    $.ajax({
@@ -139,7 +145,7 @@ function clickAddFood(){
 
   console.log(newFood);
   database.ref().push(newFood);
- }
+ };
 
 
 
@@ -162,7 +168,7 @@ console.log(totalCalories);
 
 $("#calc-food").click(function (e) { 
   e.preventDefault();
-  
+var i = 0;
 for (var total = 0; i < totalCalories.length; total += totalCalories[i++]);
 console.log(total);
 var per = (total / 2000) * 100;
@@ -174,9 +180,24 @@ $("#sr-only").html(complete);
 
 totalHtml = "<p class='text center total-p'> Total calories:<span class= 'cal'>" + total + "</span></p>";
 $(".totals").html(totalHtml);
+var i = 0
+for (var fattotal = 0 ; i < totalFat.length; fattotal += totalFat[i++]);
+fat_totalHtml = "<p class='text center total-c'> Total Fat :<span class= 'cal'>" + fattotal + "</span></p>";
+$(".totals1").html(fat_totalHtml);
   console.log("Meal Total Clicked!");
 });
-
+function bar() {
+console.log(totalCalories);
+ 		var i = 0
+for (var total = 0 ; i < totalCalories.length; total += totalCalories[i++]);
+console.log(total);
+var per = (total / 2000) * 100;
+var calc = per.toFixed();
+console.log(calc);
+$(".progress-bar").css("width", calc + "%");
+var complete = "<span>" + calc + "% complete</span>";
+$("#sr-only").html(complete);
+  };
 
 //button click ref.remove from line 19 in document.ready function
 
