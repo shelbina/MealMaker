@@ -62,13 +62,18 @@ $("#btnLogout").click(function (e) {
 
  $(document).ready(function() {
    console.log("ready");
-   database.ref().remove();
+   clickAddFood();
+
  });
-
-// auth.signInWithEmailAndPassword(email, pass);
-// auth.createUserWithEmailAndPassword(email, pass);
-// auth.onAuthStateChanged(firebaseUser, { });
-
+ 
+ $("#food-input").keyup(function (e) { 
+   if(e.which == 13) {
+     $(this).blur();
+     $("#food-input-button").focus().click();
+   }
+ });
+ 
+function clickAddFood(){
  $("#food-input-button").click(function(e) {
    e.preventDefault();
    var foodInput = $("#food-input").val().trim();
@@ -113,7 +118,7 @@ $("#btnLogout").click(function (e) {
    var foodImage = $("<img height=200px width=200px src=" + webformatURL + ">");
    $(".panel-body").append(foodImage);
  }
-
+}
 
 
 
