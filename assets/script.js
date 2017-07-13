@@ -71,6 +71,7 @@ $("#btnLogout").click(function (e) {
 });
  $("#clear-menu").click(function(e) {
    database.ref().remove();
+   location.reload(true);
  });
  
  $("#food-input").keyup(function (e) { 
