@@ -199,7 +199,14 @@ $(".progress-bar").css("width", calc + "%");
 var complete = "<span>" + calc + "% complete</span>";
 $("#sr-only").html(complete);
   };
-
+function colors(calc){
+  if (calc >= 75){
+$(".progress-bar").attr('class', "progress-bar progress-bar-striped progress-bar-warning");
+  }
+ if (calc >= 100){
+$(".progress-bar").attr('class', "progress-bar progress-bar-striped progress-bar-danger");
+  }
+}
 //button click ref.remove from line 19 in document.ready function
 
 
