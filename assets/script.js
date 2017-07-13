@@ -56,14 +56,19 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
 
 $("#btnLogout").click(function (e) { 
   firebase.auth().signOut();
+
+
+ });
   
-});
 
 
  $(document).ready(function() {
    console.log("ready");
    clickAddFood();
-
+    
+});
+ $("#clear-menu").click(function(e) {
+   database.ref().remove();
  });
  
  $("#food-input").keyup(function (e) { 
@@ -72,6 +77,7 @@ $("#btnLogout").click(function (e) {
      $("#food-input-button").focus().click();
    }
  });
+ 
  
 function clickAddFood(){
  $("#food-input-button").click(function(e) {
@@ -170,6 +176,8 @@ totalHtml = "<p class='text center total-p'> Total calories:<span class= 'cal'>"
 $(".totals").html(totalHtml);
   console.log("Meal Total Clicked!");
 });
+
+
 //button click ref.remove from line 19 in document.ready function
 
 
