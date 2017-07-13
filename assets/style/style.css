@@ -23,9 +23,7 @@ th {
   position: relative;
   opacity: 0.8;
 }
-.solid {
-	opacity: 1;
-}
+
 footer {
 	opacity: 0.8;
 	padding:auto;
@@ -41,4 +39,7 @@ h3 {
 }
 .navbar-brand {
 	font-family:'Rock Salt', cursive;
+}
+.green {
+	background-color:#93c54b;
 }
