@@ -15,8 +15,8 @@ var config = {
 var foodName;
 var servSize;
 var calories;
-var totalFat = [];
 var fat;
+var totalFat = [];
 var totalCalories = [];
 var i = 0;
 var total = 0;
