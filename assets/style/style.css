@@ -49,3 +49,13 @@ h3 {
 	border-style: solid;
 	border-color:white;
 }
+footer {
+	bottom: 0;
+	color: white;
+	text-align: center;
+}
+
+.logo{
+	 width: 150px;
+	 height: auto;
+}
