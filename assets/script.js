@@ -52,6 +52,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
     console.log("Logged in A-Ok.")
    // window.location = 'mealmaker.html'; //After successful login, user will be redirected to mealmaker.html
     $("#btnLogout").removeClass("hide");
+    $("#btnLogin").addClass("hide");
   } else {
     console.log("not logged in");
     $("#btnLogout").addClass("hide");
@@ -60,7 +61,8 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
 
 $("#btnLogout").click(function (e) { 
   firebase.auth().signOut();
-
+  $("#btnLogin").removeClass("hide");
+  $("#btnLogout").addClass("hide")
 
  });
   
