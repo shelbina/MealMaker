@@ -19,6 +19,7 @@ var fat;
 var totalFat = [];
 var totalCalories = [];
 var i = 0;
+
 var total = 0;
  
  //vars for login page
@@ -49,6 +50,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
   if(firebaseUser){
     console.log(firebaseUser);
     console.log("Logged in A-Ok.")
+   // window.location = 'mealmaker.html'; //After successful login, user will be redirected to mealmaker.html
     $("#btnLogout").removeClass("hide");
   } else {
     console.log("not logged in");
