@@ -1,22 +1,22 @@
 var config = {
 
-   apiKey: "AIzaSyBKpIFAQruvPekpkeqncOcIPpnnK78U6Zg",
+  apiKey: "AIzaSyBKpIFAQruvPekpkeqncOcIPpnnK78U6Zg",
 
-   authDomain: "mealmaker-3f984.firebaseapp.com",
+  authDomain: "mealmaker-3f984.firebaseapp.com",
 
-   databaseURL: "https://mealmaker-3f984.firebaseio.com",
+  databaseURL: "https://mealmaker-3f984.firebaseio.com",
 
-   projectId: "mealmaker-3f984",
+  projectId: "mealmaker-3f984",
 
-   storageBucket: "mealmaker-3f984.appspot.com",
+  storageBucket: "mealmaker-3f984.appspot.com",
 
-   messagingSenderId: "776198822347"
+  messagingSenderId: "776198822347"
 
- };
+};
 
- firebase.initializeApp(config);
+firebase.initializeApp(config);
 
- var database = firebase.database();
+var database = firebase.database();
 
 var foodName;
 
@@ -34,9 +34,9 @@ var i = 0;
 
 var total = 0;
 
- 
 
- //vars for login page
+
+//vars for login page
 
 var txtEmail = $("#txtEmail");
 
@@ -48,7 +48,7 @@ var btnSignUp = $("#btnSignUp");
 
 var btnLogout = $("#btnLogout");
 
-$(btnLogin).click(function (e) { 
+$(btnLogin).click(function(e) {
 
   var email = txtEmail.val().trim();
 
@@ -60,11 +60,11 @@ $(btnLogin).click(function (e) {
 
   promise.catch(e => console.log(e.message));
 
-  
+
 
 });
 
-$(btnSignUp).click(function (e) { 
+$(btnSignUp).click(function(e) {
 
   var email = txtEmail.val().trim();
 
@@ -76,166 +76,168 @@ $(btnSignUp).click(function (e) {
 
   promise.catch(e => console.log(e.message));
 
-  
+
 
 });
 
 firebase.auth().onAuthStateChanged(firebaseUser => {
 
-  if(firebaseUser){
+  if (firebaseUser) {
 
     console.log(firebaseUser);
 
     console.log("Logged in A-Ok.");
 
-   // window.location = 'mealmaker.html'; //After successful login, user will be redirected to mealmaker.html
+    // window.location = 'mealmaker.html'; //After successful login, user will be redirected to mealmaker.html
 
     $("#btnLogout").removeClass("hide");
+    $("#btnSignUp").addClass("hide");
+    $("#btnLogin").addClass("hide");
 
   } else {
 
     console.log("not logged in");
 
     $("#btnLogout").addClass("hide");
+    $("#btnSignUp").removeClass("hide");
+    $("#btnLogin").removeClass("hide");
 
   }
 
 });
 
-$("#btnLogout").click(function (e) { 
+$("#btnLogout").click(function(e) {
 
   firebase.auth().signOut();
 
- });
+});
 
-  
 
- $(document).ready(function() {
 
-   console.log("ready");
+$(document).ready(function() {
 
-   clickAddFood();
+  console.log("ready");
 
-    
+  clickAddFood();
+
+
 
 });
 
- $("#clear-menu").click(function(e) {
+$("#clear-menu").click(function(e) {
 
-   database.ref().remove();
+  database.ref().remove();
 
-   location.reload(true);
+  location.reload(true);
 
- });
-
- 
-
- 
-
- $("#food-input").keyup(function (e) { 
-
-   if(e.which == 13) {
-
-     $(this).blur();
-
-     $("#food-input-button").focus().click();
-
-   }
-
- });
-
- 
- 
+});
 
 
- function clickAddFood(){
 
- $("#food-input-button").click(function(e) {
 
-  // e.preventDefault();
+$("#food-input").keyup(function(e) {
 
-   var foodInput = $("#food-input").val().trim();
+  if (e.which == 13) {
 
-   clearTextBoxes();
+    $(this).blur();
 
-   var applicationIDNutrition = "570420e6";
+    $("#food-input-button").focus().click();
 
-   var apiKeyNutrition = "3f9b7cc73ed56deaca89dd781453c5e7";
+  }
 
-   var queryURLNutrition = "https://api.nutritionix.com/v1_1/search/" + foodInput +
+});
 
-     "?fields=item_name%2Citem_id%2Cbrand_name%2Cnf_calories%2Cnf_total_fat&appId=" +
 
-     applicationIDNutrition + "&appKey=" + apiKeyNutrition;
 
-   var apiKeyImage = "key=5847309-0a6ea96477b972ed6e131f630&q=";
 
-   var queryURLImage = "https://pixabay.com/api/?" + apiKeyImage + foodInput + "&image_type=photo";
+function clickAddFood() {
 
-   
+  $("#food-input-button").click(function(e) {
 
-   $.ajax({
+    // e.preventDefault();
 
-     url: (queryURLNutrition),
+    var foodInput = $("#food-input").val().trim();
 
-     method: "GET"
+    clearTextBoxes();
 
-   }).done(function(nutritionResponse) {
+    var applicationIDNutrition = "570420e6";
 
-     x = nutritionResponse.hits[0].fields;
+    var apiKeyNutrition = "3f9b7cc73ed56deaca89dd781453c5e7";
 
-     calories = x.nf_calories;
+    var queryURLNutrition = "https://api.nutritionix.com/v1_1/search/" + foodInput +
 
-   totalCalories.push(calories);
+      "?fields=item_name%2Citem_id%2Cbrand_name%2Cnf_calories%2Cnf_total_fat&appId=" +
 
-   fat = x.nf_total_fat;
+      applicationIDNutrition + "&appKey=" + apiKeyNutrition;
 
-   totalFat.push(fat);
+    var apiKeyImage = "key=5847309-0a6ea96477b972ed6e131f630&q=";
 
- 
+    var queryURLImage = "https://pixabay.com/api/?" + apiKeyImage + foodInput + "&image_type=photo";
 
-     addFoodToTable();
 
-    bar();
 
-   });
+    $.ajax({
 
-   $.ajax({
+      url: (queryURLNutrition),
 
-     url: (queryURLImage),
+      method: "GET"
 
-     method: "GET"
+    }).done(function(nutritionResponse) {
 
-   }).done(function(imageResponse) {
+      x = nutritionResponse.hits[0].fields;
 
-     y = imageResponse.hits[0];
+      calories = x.nf_calories;
 
-     webformatURL = (y.webformatURL);
+      totalCalories.push(calories);
 
-     createFoodImage();
+      fat = x.nf_total_fat;
 
-   });
+      totalFat.push(fat);
 
- });
 
- function clearTextBoxes() {
 
-  foodName = $("#food-input").val("");
+      addFoodToTable();
 
+      bar();
+
+    });
+
+    $.ajax({
+
+      url: (queryURLImage),
+
+      method: "GET"
+
+    }).done(function(imageResponse) {
+
+      y = imageResponse.hits[0];
+
+      webformatURL = (y.webformatURL);
+
+      createFoodImage();
+
+    });
+
+  });
+
+  function clearTextBoxes() {
+
+    foodName = $("#food-input").val("");
+
+  }
+
+  function createFoodImage() {
+
+    var foodImage = $("<img height=200px width=200px src=" + webformatURL + ">");
+
+    $(".panel-body").append(foodImage);
+
+  }
 }
 
- function createFoodImage() {
+function addFoodToTable() {
 
-   var foodImage = $("<img height=200px width=200px src=" + webformatURL + ">");
-
-   $(".panel-body").append(foodImage);
-
- }
-}
-
- function addFoodToTable(){
-
-   var newFood = {
+  var newFood = {
 
     foodName: x.item_name,
 
@@ -251,9 +253,9 @@ $("#btnLogout").click(function (e) {
 
   database.ref().push(newFood);
 
- };
+};
 
- database.ref().on("child_added", function(childSnapshot, prevChildKey){
+database.ref().on("child_added", function(childSnapshot, prevChildKey) {
 
   var foodName = childSnapshot.val().foodName;
 
@@ -263,43 +265,43 @@ $("#btnLogout").click(function (e) {
 
   var fat = childSnapshot.val().fat;
 
-  $("#table-body").append("<tr><td>" + foodName+ "</td><td>" + servSize + "</td><td>" +
+  $("#table-body").append("<tr><td>" + foodName + "</td><td>" + servSize + "</td><td>" +
 
     calories + "</td><td>" + fat + "</td></tr>");
 
-   
 
- });
+
+});
 
 console.log(totalCalories);
 
 console.log(totalFat);
 
-$("#calc-food").click(function (e) { 
+$("#calc-food").click(function(e) {
 
   e.preventDefault();
 
-var i = 0
+  var i = 0
 
-for (var total = 0 ; i < totalCalories.length; total += totalCalories[i++]);
+  for (var total = 0; i < totalCalories.length; total += totalCalories[i++]);
 
-var total = total.toFixed();
+  var total = total.toFixed();
 
-totalHtml = "<p class='text center total-p'> Total calories:<span class= 'cal'>" + total + "</span></p>";
+  totalHtml = "<p class='text center total-p'> Total calories:<span class= 'cal'>" + total + "</span></p>";
 
-$(".totals").html(totalHtml);
+  $(".totals").html(totalHtml);
 
-var i = 0
+  var i = 0
 
-for (var fattotal = 0 ; i < totalFat.length; fattotal += totalFat[i++]);
+  for (var fattotal = 0; i < totalFat.length; fattotal += totalFat[i++]);
 
-fat_totalHtml = "<p class='text center total-c'> Total Fat :<span class= 'cal'>" + fattotal + "</span></p>";
+  fat_totalHtml = "<p class='text center total-c'> Total Fat :<span class= 'cal'>" + fattotal + "</span></p>";
 
-$(".totals1").html(fat_totalHtml);
+  $(".totals1").html(fat_totalHtml);
 
   console.log("Meal Total Clicked!")
 
- 
+
 
 });
 
@@ -307,56 +309,56 @@ $(".totals1").html(fat_totalHtml);
 
 function bar() {
 
-console.log(totalCalories);
+  console.log(totalCalories);
 
-var i = 0
+  var i = 0
 
-for (var total = 0 ; i < totalCalories.length; total += totalCalories[i++]);
+  for (var total = 0; i < totalCalories.length; total += totalCalories[i++]);
 
-var total = total.toFixed();
+  var total = total.toFixed();
 
-console.log(total);
+  console.log(total);
 
-var per = (total / 2000) * 100;
+  var per = (total / 2000) * 100;
 
-var calc = per.toFixed();
+  var calc = per.toFixed();
 
-console.log(calc);
+  console.log(calc);
 
-$(".progress-bar").css("width", calc + "%");
+  $(".progress-bar").css("width", calc + "%");
 
-var complete =  +calc + "% complete";
+  var complete = +calc + "% complete";
 
-$(".progress-bar").text(complete);
+  $(".progress-bar").text(complete);
 
-colors(calc);
+  colors(calc);
 
-  };
+};
 
- function colors(calc){
+function colors(calc) {
 
-  if (calc >= 75){
+  if (calc >= 75) {
 
-$(".progress-bar").attr('class', "progress-bar progress-bar-striped progress-bar-warning");
+    $(".progress-bar").attr('class', "progress-bar progress-bar-striped progress-bar-warning");
 
   }
 
- if (calc >= 100){
+  if (calc >= 100) {
 
-$(".progress-bar").attr('class', "progress-bar progress-bar-striped progress-bar-danger");
+    $(".progress-bar").attr('class', "progress-bar progress-bar-striped progress-bar-danger");
 
-var play = "<audio controls autoplay id='audio1' src='assets/younameit.mp3' type= 'audio/mpeg'></audio>";
+    var play = "<audio controls autoplay id='audio1' src='assets/younameit.mp3' type= 'audio/mpeg'></audio>";
 
-$("#play").html(play);
+    // $("#play").html(play);
 
-// Initialize jRumble on Selector
-$('.container-fluid').jrumble();
+    // Initialize jRumble on Selector
+    // $('.container-fluid').jrumble();
 
-// Start rumble on element
-$('.container-fluid').trigger('startRumble');
-  
+    // Start rumble on element
+    // $('.container-fluid').trigger('startRumble');
 
- $(".the_grand").html("<div style='width:100%;height:0;padding-bottom:75%;position:relative;'><iframe src='https://giphy.com/embed/3o6Zt0Rfjy0ePJmYEw' width='75%'' height='75%' style='position:absolute' frameBorder='0' class='giphy-embed' allowFullScreen></iframe></div><p><a href='https://giphy.com/gifs/family-guy-fox-family-guy-foxtv-3o6Zt0Rfjy0ePJmYEw'>via GIPHY</a></p>");
- 
+
+    // $(".the_grand").html("<div style='width:100%;height:0;padding-bottom:75%;position:relative;'><iframe src='https://giphy.com/embed/3o6Zt0Rfjy0ePJmYEw' width='75%'' height='75%' style='position:absolute' frameBorder='0' class='giphy-embed' allowFullScreen></iframe></div><p><a href='https://giphy.com/gifs/family-guy-fox-family-guy-foxtv-3o6Zt0Rfjy0ePJmYEw'>via GIPHY</a></p>");
+
+  }
 }
-} 
