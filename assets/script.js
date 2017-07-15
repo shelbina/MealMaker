@@ -49,7 +49,7 @@ $(btnSignUp).click(function (e) {
 firebase.auth().onAuthStateChanged(firebaseUser => {
   if(firebaseUser){
     console.log(firebaseUser);
-    console.log("Logged in A-Ok.")
+    console.log("Logged in A-Ok.");
    // window.location = 'mealmaker.html'; //After successful login, user will be redirected to mealmaker.html
     $("#btnLogout").removeClass("hide");
   } else {
@@ -75,6 +75,7 @@ $("#btnLogout").click(function (e) {
    database.ref().remove();
    location.reload(true);
  });
+ 
  
  $("#food-input").keyup(function (e) { 
    if(e.which == 13) {
@@ -148,7 +149,7 @@ function clickAddFood(){
 
   console.log(newFood);
   database.ref().push(newFood);
- };
+ }
 
 
 
@@ -183,7 +184,7 @@ $("#sr-only").html(complete);
 
 totalHtml = "<p class='text center total-p'> Total calories:<span class= 'cal'>" + total + "</span></p>";
 $(".totals").html(totalHtml);
-var i = 0
+var i = 0;
 for (var fattotal = 0 ; i < totalFat.length; fattotal += totalFat[i++]);
 fat_totalHtml = "<p class='text center total-c'> Total Fat :<span class= 'cal'>" + fattotal + "</span></p>";
 $(".totals1").html(fat_totalHtml);
@@ -191,7 +192,7 @@ $(".totals1").html(fat_totalHtml);
 });
 function bar() {
 console.log(totalCalories);
- 		var i = 0
+ 		var i = 0;
 for (var total = 0 ; i < totalCalories.length; total += totalCalories[i++]);
 console.log(total);
 var per = (total / 2000) * 100;
@@ -200,13 +201,16 @@ console.log(calc);
 $(".progress-bar").css("width", calc + "%");
 var complete = "<span>" + calc + "% complete</span>";
 $("#sr-only").html(complete);
-  };
+colors(calc);
+  }
 function colors(calc){
   if (calc >= 75){
-$(".progress-bar").attr('class', "progress-bar progress-bar-striped progress-bar-warning");
+$(".progress-bar").attr('class', "progress-bar progress-bar-striped progress-bar-warning active");
   }
  if (calc >= 100){
-$(".progress-bar").attr('class', "progress-bar progress-bar-striped progress-bar-danger");
+$(".progress-bar").attr('class', "progress-bar progress-bar-striped progress-bar-danger active");
+var play = "<audio controls autoplay id='audio1' src='assets/younameit.mp3' type= 'audio/mpeg'></audio>";
+$("#play").html(play);
   }
 }
 //button click ref.remove from line 19 in document.ready function
