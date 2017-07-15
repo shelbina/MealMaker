@@ -60,7 +60,8 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
 
 $("#btnLogout").click(function (e) { 
   firebase.auth().signOut();
-
+  $("#btnLogin").removeClass("hide");
+  $("#btnLogout").addClass("hide")
 
  });
   
