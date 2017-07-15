@@ -2,12 +2,21 @@ body {
 	background:url(../images/foodbkg.jpg) no-repeat center center fixed;
 	background-size: cover;
 }
+.navbar {
+	margin-top: 20px;
+	opacity: .9;
+}
+#checkIn {
+	margin-bottom: 20px;
+	opacity: .9;
+}
 .jumbotron {
 	margin: auto;
 	 font-family: 'Rock Salt', cursive;
 }
+
 .input-group {
-	margin: auto;
+	margin-top: 20px;
 }
 table {
 	background-color:white;
