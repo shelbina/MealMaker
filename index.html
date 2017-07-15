@@ -7,28 +7,82 @@
     <link rel="stylesheet" href="assets/style/reset.css">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
       <link rel="stylesheet" href="https://bootswatch.com/sandstone/bootstrap.css">
-      <link rel="stylesheet" type="text/css" href="assets/style/style.css">   
+      <link rel="stylesheet" type="text/css" href="assets/style/style.css">  
       <link href="https://fonts.googleapis.com/css?family=Rock+Salt" rel="stylesheet"> 
+       
     <title>Login to MealMaker</title>
 </head>
 <body>
-<br>
-<br>
-   <div class="container-fluid">
+
+    <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
+
+      
+   </head>
+   <body>
+    <div class="container-fluid">
+      <div class="row">
+      <div class="col-lg-1"></div><!--spacing div-->
+      <div class="col-lg-10">
+        <div class="row">
+        <div class="col-lg-12">
+          <nav class="navbar navbar-inverse">
+          <div class="container-fluid">
+          <div class="navbar-header">
+             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             </button>
+             <a class="navbar-brand" href="#">MealMaker</a>
+          </div>
+          <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav">
+             <!--<li class="active"><a href="../MealMaker/index.html">Home</a>
+             </li>-->
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+          <!--<li><a href="#"><span type="button" class="glyphicon glyphicon-log-in  btn btn-secondary btnLogin" id="btnLogin"></span> Login</a>
+          </li>
+          <li><a href="#"><span type="button" class="glyphicon glyphicon-user btn-action btnSignUp" id="btnSignUp"></span>Sign Up</a>
+          </li>
+          <li><a href="#"><span type="button" class="glyphicon glyphicon-log-out btn-action  btnLogout hide" id="btnLogout">
+             </span> Log out</a>
+            </li>-->
+          </ul>
+        </div>
+        </div>
+      </nav>
+    </div><!--/.col-->
+    </div><!--/.row-->
     <div class="row">
-    <div class="col-lg-1"></div><!--spacing div-->
-    <div class="col-lg-10">
+    <div class="col-lg-12">
+      <div id="checkIn" class="well well-sm text-center green">
+          <input id="txtEmail" type="email" placeholder="E-mail">
+          <input id="txtPassword" type="password" placeholder="Password">
+
+          <button id="btnLogin" class="btn btnBorder btn-sm btn-success btn-action glyphicon glyphicon-log-in btn-action">
+              Log in
+          </button>
+          <button id="btnSignUp" class="btn btnBorder btn-sm btn-success btn-action glyphicon glyphicon-user btn btn-secondary">
+              Sign Up
+          </button>
+          <button id="btnLogout" class="btn btnBorder btn-sm btn-success btn-action glyphicon glyphicon-log-out btn-action btn btn-action hide">
+              Log out
+          </button>
+      </div><!--/.well-->
+    </div>
+    </div>
     <div class="row">
     <div class="col-lg-12">  
          <div class="jumbotron">
-            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <div id="myCarousel" class="carousel slide" data-ride="carousel" data-slide="5000">
   <!-- Wrapper for slides -->
   <div class="carousel-inner">
     <div class="item active">
       <img src="assets/images/sweet-potato.jpg" alt="food">
       <div class="carousel-caption">
         <h1>Meal Maker</h1>
-        <h3>For YOUR Health!</h3>
+        <h3>For Your Health</h3>
       </div>
     </div>
 
@@ -47,12 +101,20 @@
         <h3>...to chicken!</h3>
       </div>
     </div>
-
-    <div class="item">
-      <img src="assets/images/sweet-potato.jpg" alt="food">
+	
+	<div class="item">
+      <img src="assets/images/nightBarA.jpg" alt="food">
       <div class="carousel-caption">
         <h1>Meal Maker</h1>
-        <h3>We have it all!</h3>
+        <h3>On a Night Out...</h3> 
+      </div>
+    </div>
+
+    <div class="item">
+      <img src="assets/images/sweet-potato-pie.jpg" alt="food">
+      <div class="carousel-caption">
+        <h1>Meal Maker</h1>
+        <h3>...we have it all!</h3>
       </div>
     </div>
 
@@ -60,11 +122,12 @@
       <img src="assets/images/blueberry.jpg" alt="food">
       <div class="carousel-caption">
         <h1>Meal Maker</h1>
-        <h3>For YOUR Health</h3>
+        <h3></h3>
       </div>
     </div>
-  </div>
 
+    
+  </div>
   <!-- Left and right controls -->
   <a class="left carousel-control" href="#myCarousel" data-slide="prev">
     <span class="glyphicon glyphicon-chevron-left"></span>
@@ -76,43 +139,107 @@
   </a>
 </div>
          </div>
-
     </div>
-    </div>
-    <br>
-    <br>
-    <div class="well well-sm text-center green">
-        <input id="txtEmail" type="email" placeholder="E-mail">
-
-        <input id="txtPassword" type="password" placeholder="Password">
-
-        <button id="btnLogin" class="btn btnBorder btn-sm btn-success btn-action glyphicon glyphicon-log-in btn-action">
-            Log in
-        </button>
-
-        <button id="btnSignUp" class="btn btnBorder btn-sm btn-success btn-action glyphicon glyphicon-user btn btn-secondary">
-            Sign Up
-        </button>
-
-        <button id="btnLogout" class="btn btnBorder btn-sm btn-success btn-action glyphicon glyphicon-log-out btn-action btn btn-action hide">
-            Log out
-        </button>
-    </div>
-
-    <footer>
-      <div class="container">
-      <p class="text-muted">                        
-        <h3>Powered by:</h3><img src="assets/images/nutritionlogo.png" alt="nutrionix" class="logo">
-        <p>Contact information: <a href="mailto:someone@example.com">nutrionix@example.com</a>.</p>
+    </div><!--/.row-->
+    <!--<div class="row">
+   <div class="col-lg-12">-->
+      <div class="row">
+         <div class="col-lg-12">
+            <div class="input-group input-food">
+               <span class="input-group-btn">
+               <button class="btn btn-success btn-action" type="text" id="food-input-button">Add food</button>
+               </span>
+               <input type="text" id="food-input" 
+               class="form-control" placeholder="Type 'Big Mac' or 'cheeseburger'">
+            </div><!-- /input-group -->
+         </div><!-- /.col-lg-12 -->
+      </div><!-- /.row -->
+      <div class="row">
+      <div class="col-lg-12">
+         <table class="table table-hover opaque">
+            <thead clas="success">
+               <th>Food Name</th>
+               <th>Serving Size</th>
+               <th>Calories</th>
+               <th>Fat</th>
+            </thead>
+            <tbody id="table-body"></tbody>
+      
+         </table>
       </div>
-    </footer>
-
-    <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
+      </div>
+      <div class="row">
+      <div class="col-lg-12">
+         <div class="panel panel-default">
+         <div class="panel-heading">Meals today include..</div>
+         <div class="panel-body" id="food-pic">
+         
+         </div><!--/.panel-body-->
+      </div><!--/.panel-default-->
+      </div><!--above panel /.col-lg-2-->
+      
+      </div><!--/.row-->
+      <div class="row">
+      <div class="col-lg-12">
+      <div class="well">     
+      <div class="row"> 
+         <div class="col-md-1"></div>
+         <div id="meal-total" class="col-md-7">Your progress based on a 2000 calorie diet</div>
+      </div>
+      <div class="row">
+         <div class="col-md-1"></div>
+         <div id="meal-total" class="col-md-7">
+            <!--Panel Content-->
+            <div class="progress">
+               <div class="progress-bar progress-bar-striped active progress-bar-success" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                  <span class="sr-only">45% Complete</span>
+               </div>
+            </div>
+          </div>
+          <!--<div class="col-md-1"></div>-spacing div-->
+          <div class="col-md-2">
+  <button type="button" class="btn btn-lg btn-success btn-action" id="calc-food" aria-expanded="false">
+    Meal total! <span class="glyphicon glyphicon-heart-empty"></span>
+  </button>
+      </div>
+      <div class="col-md-2">
+             <button type="button" class="btn btn-lg btn-success btn-action" id="clear-menu" aria-expanded="false">
+    Clear plates <span class="glyphicon glyphicon-refresh"></span>
+  </button>
+          </div>
+         </div><!--/.row-->
+      </div><!--closes .well-->
+   </div><!--<div class="col-lg-12">--> 
+</div>
+                  <br>
+                  <br>
+                  <div class="col-lg-1"></div>
+                  <!--spacing div-->
+                  <div class="col-lg-12">
+                         <footer>
+                          <div id="play"></div>
+                          <div class="container">
+                            <p class="text-muted">  
+                               
+                            <h3>Powered by:</h3><a href="https://www.nutritionix.com/database"> <img src="assets/images/nutritionlogo.png" alt="nutrionix" class="logo"></a>
+                              
+                          </div>
+                        </footer>
+                  </div>
+                  <!--spacing div-->
+               </div>
+            </div>
+   </div><!--top .col-lg-10-->
+   <div class="col-lg-1"></div><!-- main spacing col-->
+   </div><!--top /.row-->
+</div><!--container-->
+      <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
       <script src="https://code.jquery.com/jquery.js"></script>
       <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
       <script type="text/javascript" src="assets/C-logic.js"></script>
       <script type="text/javascript" src="assets/script.js"></script>
+      <script type="text/javascript" src="assets/jquery.jrumble.1.3.js"></script>
 </body>
 </html>
