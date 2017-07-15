@@ -36,6 +36,7 @@ th {
 footer {
 	opacity: 0.8;
 	padding:auto;
+	margin-bottom: 15px;
 }
 .item {
 	height: 200px;
@@ -44,7 +45,7 @@ footer {
 	margin-bottom: 20px;
 }
 h3 {
-	font-family: "Times New Roman";
+	font-family: "Times New Roman", cursive;
 }
 .navbar-brand {
 	font-family:'Rock Salt', cursive;
